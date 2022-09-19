@@ -1,0 +1,26 @@
+.item-card-wrapper {
+    box-sizing: border-box;
+    padding: 40px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.icon-wrapper {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+}
+
+.item-card-wrapper-border-1 {
+    border: 1px dashed #E2E2E3;
+}
+
+.item-card-wrapper-border-2 {
+    border: 1px dashed #54B84E;
+}
+
+.item-card-wrapper-border-3 {
+    border: 1px solid #54B84E;
+}

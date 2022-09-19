@@ -1,0 +1,43 @@
+.item-card {
+    display: flex;
+    flex-direction: row;
+    padding: 16px 32px;
+    justify-content: space-between;
+    background-color: #FCFCFC;
+    box-shadow: 0px 4px 30px #00000024;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 55px;
+}
+
+.item-card:hover {
+    background-color: #f5f5f5;
+    box-shadow: 0px 4px 30px #00000035;
+}
+
+.item-card-last {
+    margin-right: 0px;
+}
+
+.item-card-icon-wrpper {
+    margin-right: 16px;
+}
+
+.item-card-title {
+    margin-bottom: 0px;
+    font-family:  'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: #39363C;
+}
+
+.item-card-subtitle {
+    font-family:  'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #6E6D73;
+}

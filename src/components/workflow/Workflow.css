@@ -1,0 +1,11 @@
+.workflow-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.workflow-stroke {
+    background-color: #E2E2E3;
+    height: 55px;
+    width: 2px;
+}
