@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import classNames from "classnames";
+import Collapse from "@mui/material/Collapse";
 
 import SubItemCard from "../subItemCard/SubItemCard.component";
 import { generateSubItemText } from "../../service/WorkflowDataConverter";
@@ -40,7 +41,9 @@ const ItemCard = ({ status, title, isLast, subItems }) => {
           <div className="item-card-subtitle">{subTitle}</div>
         </div>
       </div>
-      {showSubItemCard && <SubItemCard isLast={isLast} subItems={subItems} />}
+      <Collapse in={showSubItemCard}>
+        <SubItemCard isLast={isLast} subItems={subItems} />
+      </Collapse>
     </div>
   );
 };
