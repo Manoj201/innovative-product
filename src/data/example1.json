@@ -1,0 +1,137 @@
+[
+    {
+      "idFlowItem": 1,
+      "flowSequence": 1,
+      "itemTitle": "Chassis Preperation Line",
+      "itemStatus": 3,
+      "flowGroupStatus": 3,
+      "subItems": [
+        {
+          "idSubItem": 1,
+          "itemTitle": "CP01",
+          "itemSequence": 1,
+          "itemStatus": 3
+        },
+        {
+          "idSubItem": 2,
+          "itemTitle": "CP02",
+          "itemSequence": 2,
+          "itemStatus": 3
+        }
+      ]
+    },
+    {
+      "idFlowItem": 2,
+      "flowSequence": 1,
+      "itemTitle": "Construction Loading Device Line",
+      "itemStatus": 3,
+      "flowGroupStatus": 3,
+      "subItems": [
+        {
+          "idSubItem": 3,
+          "itemTitle": "LK01",
+          "itemSequence": 1,
+          "itemStatus": 3
+        }
+      ]
+    },
+    {
+        "idFlowItem": 3,
+        "flowSequence": 1,
+        "itemTitle": "Construction Body Line",
+        "itemStatus": 3,
+        "flowGroupStatus": 3,
+        "subItems": [
+          {
+            "idSubItem": 4,
+            "itemTitle": "LL11",
+            "itemSequence": 1,
+            "itemStatus": 3
+          }
+        ]
+      },
+      {
+        "idFlowItem": 4,
+        "flowSequence": 1,
+        "itemTitle": "Construction Tailgate Line",
+        "itemStatus": 3,
+        "flowGroupStatus": 3,
+        "subItems": [
+          {
+            "idSubItem": 5,
+            "itemTitle": "DK20",
+            "itemSequence": 1,
+            "itemStatus": 3
+          }
+        ]
+      },
+      {
+        "idFlowItem": 5,
+        "flowSequence": 2,
+        "itemTitle": "Assembly Tailgate Line",
+        "itemStatus": 2,
+        "flowGroupStatus": 2,
+        "subItems": [
+          {
+            "idSubItem": 6,
+            "itemTitle": "PA02",
+            "itemSequence": 1,
+            "itemStatus": 3
+          },
+          {
+            "idSubItem": 7,
+            "itemTitle": "PA03",
+            "itemSequence": 1,
+            "itemStatus": 3
+          },
+          {
+            "idSubItem": 8,
+            "itemTitle": "PA04",
+            "itemSequence": 1,
+            "itemStatus": 2
+          }
+        ]
+      },
+      {
+        "idFlowItem": 6,
+        "flowSequence": 2,
+        "itemTitle": "Assembly Main Line",
+        "itemStatus": 1,
+        "flowGroupStatus": 2,
+        "subItems": [
+          {
+            "idSubItem": 9,
+            "itemTitle": "ML01",
+            "itemSequence": 1,
+            "itemStatus": 1
+          },
+          {
+            "idSubItem": 10,
+            "itemTitle": "ML02",
+            "itemSequence": 1,
+            "itemStatus": 1
+          },
+          {
+            "idSubItem": 11,
+            "itemTitle": "ML03",
+            "itemSequence": 1,
+            "itemStatus": 1
+          }
+        ]
+      },
+      {
+        "idFlowItem": 7,
+        "flowSequence": 3,
+        "itemTitle": "Road Trip",
+        "itemStatus": 1,
+        "flowGroupStatus": 1,
+        "subItems": [
+          {
+            "idSubItem": 12,
+            "itemTitle": "RT01",
+            "itemSequence": 1,
+            "itemStatus": 1
+          }
+        ]
+      }
+]
