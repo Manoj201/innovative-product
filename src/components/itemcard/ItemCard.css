@@ -1,3 +1,4 @@
+
 .item-card {
     display: flex;
     flex-direction: row;
@@ -40,4 +41,19 @@
     font-size: 16px;
     line-height: 20px;
     color: #6E6D73;
+}
+
+
+@media screen and (max-width: 480px) {
+    .item-card-container {
+        margin-bottom: 20px;
+    }
+
+    .item-card-container-last {
+        margin-bottom: 0px;
+    }
+
+    .item-card   {
+        margin-right: 0px;
+    }
 }

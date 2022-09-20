@@ -41,3 +41,9 @@
     font-weight: 700;
     font-size: 14px;
 }
+
+@media screen and (max-width: 480px) {
+    .sub-item-container {
+        margin-right: 0;
+    }
+}

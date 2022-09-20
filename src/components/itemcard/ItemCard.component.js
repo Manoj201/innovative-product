@@ -28,7 +28,12 @@ const ItemCard = ({ status, title, isLast, subItems }) => {
   };
 
   return (
-    <div>
+    <div
+      className={classNames(
+        "item-card-container",
+        isLast && "item-card-container-last"
+      )}
+    >
       <div
         className={classNames("item-card", isLast && "item-card-last")}
         onClick={handleClickCard}
