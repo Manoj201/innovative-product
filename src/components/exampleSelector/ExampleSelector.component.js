@@ -18,6 +18,7 @@ const ExampleSelector = ({ onChange }) => {
     <div className="selector-container">
       {buttonArray.map((item) => (
         <ExampleButton
+          key={item}
           label={item}
           selected={item === selected}
           onClick={() => handelClick(item)}

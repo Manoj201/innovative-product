@@ -12,7 +12,6 @@ function App() {
   const [data, setData] = useState(example1Data);
 
   const handleChangeSelection = (value) => {
-    console.log(value);
     switch (value) {
       case "Example 1":
         setData(example1Data);

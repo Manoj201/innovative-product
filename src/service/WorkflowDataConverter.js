@@ -18,7 +18,6 @@ const prepareData = (workflofDara) => {
       }
     });
 
-    console.log(result);
     return result;
   } catch (error) {
     console.error("Workflow Data Manipulation Service Failed.", error);

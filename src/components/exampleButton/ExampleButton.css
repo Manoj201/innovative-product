@@ -18,3 +18,11 @@
     background-color: #54B84E;
     color: #ffffff;
 }
+
+@media screen and (max-width: 480px) {
+    .button-root{
+        margin-left: 0px;
+        margin-right:  0px;
+        margin-bottom: 10px;
+    }
+}
