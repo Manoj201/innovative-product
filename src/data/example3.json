@@ -23,13 +23,13 @@
     {
       "idFlowItem": 2,
       "flowSequence": 1,
-      "itemTitle": "Construction Tailgate Line",
+      "itemTitle": "Construction Loading Device Line",
       "itemStatus": 3,
       "flowGroupStatus": 3,
       "subItems": [
         {
           "idSubItem": 3,
-          "itemTitle": "DK20",
+          "itemTitle": "LK01",
           "itemSequence": 1,
           "itemStatus": 3
         }
@@ -38,76 +38,91 @@
     {
       "idFlowItem": 3,
       "flowSequence": 2,
-      "itemTitle": "Assembly Tailgate Line",
-      "itemStatus": 2,
-      "flowGroupStatus": 2,
+      "itemTitle": "Truck Engine Line",
+      "itemStatus": 3,
+      "flowGroupStatus": 3,
       "subItems": [
         {
           "idSubItem": 4,
-          "itemTitle": "PA02",
+          "itemTitle": "TE01",
           "itemSequence": 1,
           "itemStatus": 3
         },
         {
           "idSubItem": 5,
-          "itemTitle": "PA03",
+          "itemTitle": "TE02",
           "itemSequence": 1,
           "itemStatus": 3
-        },
-        {
-          "idSubItem": 6,
-          "itemTitle": "PA04",
-          "itemSequence": 1,
-          "itemStatus": 2
-        },
-        {
-          "idSubItem": 7,
-          "itemTitle": "AL01",
-          "itemSequence": 1,
-          "itemStatus": 2
-        },
-        {
-          "idSubItem": 8,
-          "itemTitle": "PA01",
-          "itemSequence": 2,
-          "itemStatus": 1
-        },
-        {
-          "idSubItem": 9,
-          "itemTitle": "AL03",
-          "itemSequence": 3,
-          "itemStatus": 1
-        },
-        {
-          "idSubItem": 10,
-          "itemTitle": "AL05",
-          "itemSequence": 4,
-          "itemStatus": 1
-        },
-        {
-          "idSubItem": 11,
-          "itemTitle": "AL07",
-          "itemSequence": 5,
-          "itemStatus": 1
-        },
-        {
-          "idSubItem": 12,
-          "itemTitle": "AL10",
-          "itemSequence": 6,
-          "itemStatus": 1
         }
       ]
     },
     {
       "idFlowItem": 4,
+      "flowSequence": 2,
+      "itemTitle": " Construction Loading Device Line",
+      "itemStatus": 3,
+      "flowGroupStatus": 3,
+      "subItems": [
+        {
+          "idSubItem": 6,
+          "itemTitle": "LK01",
+          "itemSequence": 1,
+          "itemStatus": 3
+        }
+      ]
+    },
+    {
+      "idFlowItem": 5,
       "flowSequence": 3,
+      "itemTitle": "Assembly Tailgate Line",
+      "itemStatus": 2,
+      "flowGroupStatus": 2,
+      "subItems": [
+        {
+          "idSubItem": 7,
+          "itemTitle": "PA02",
+          "itemSequence": 1,
+          "itemStatus": 3
+        },
+        {
+          "idSubItem": 8,
+          "itemTitle": "PA03",
+          "itemSequence": 1,
+          "itemStatus": 3
+        },
+        {
+          "idSubItem": 9,
+          "itemTitle": "PA04",
+          "itemSequence": 1,
+          "itemStatus": 2
+        }
+      ]
+    },
+    {
+      "idFlowItem": 6,
+      "flowSequence": 4,
       "itemTitle": "Road trip",
       "itemStatus": 1,
       "flowGroupStatus": 1,
       "subItems": [
         {
-          "idSubItem": 13,
+          "idSubItem": 10,
           "itemTitle": "RT01",
+          "itemSequence": 1,
+          "itemStatus": 1
+        }
+      ]
+    },
+    {
+      "idFlowItem": 7,
+      "flowSequence": 5,
+      "itemTitle": "External Inspection",
+      "itemStatus": 1,
+      "flowGroupStatus": 1,
+      "subItems": [
+        {
+          "idSubItem": 11,
+          "itemTitle": "EL01",
           "itemSequence": 1,
           "itemStatus": 1
         }
