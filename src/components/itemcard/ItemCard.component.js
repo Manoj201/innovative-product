@@ -41,7 +41,7 @@ const ItemCard = ({ status, title, isLast, subItems }) => {
         <div className="item-card-icon-wrpper">
           <img src={iconMap[status]} alt="status-icon" />
         </div>
-        <div>
+        <div className="item-card-text-wrpper">
           <div className="item-card-title">{title}</div>
           <div className="item-card-subtitle">{subTitle}</div>
         </div>

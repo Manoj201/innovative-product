@@ -24,8 +24,16 @@
     margin-right: 16px;
 }
 
+.item-card-text-wrpper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .item-card-title {
-    margin-bottom: 0px;
+    margin-bottom: 8px;
     font-family:  'Montserrat';
     font-style: normal;
     font-weight: 700;
