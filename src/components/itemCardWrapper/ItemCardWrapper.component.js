@@ -31,7 +31,12 @@ const ItemCardWrapper = ({ data }) => {
       <div className="icon-wrapper">
         <img src={iconMap[flowGroupStatus]} alt="progress" />
       </div>
-      <Grid container spacing={4} justifyContent="center" alignItems="center">
+      <Grid
+        container
+        spacing={4}
+        justifyContent="center"
+        alignItems="flex-start"
+      >
         {data.map((item, index) => (
           <Grid item>
             <ItemCard
