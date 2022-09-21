@@ -12,6 +12,8 @@
 @media screen and (max-width: 480px) {
     .item-card-wrapper {
         flex-direction: column;
+        margin-right: 20px;
+        margin-left: 20px;
     }
 }
 
