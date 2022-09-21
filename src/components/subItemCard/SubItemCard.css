@@ -1,6 +1,6 @@
 .sub-item-container {
     background-color: 	 #FCFCFC;
-    margin-right: 55px;
+    /* margin-right: 55px; */
     display: flex;
     flex-direction: column;
     padding: 24px 16px 8px;

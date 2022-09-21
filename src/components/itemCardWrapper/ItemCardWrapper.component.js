@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
 
+import Grid from "@mui/material/Grid";
+
 import ItemCard from "../itemcard/ItemCard.component";
 
 import doneSVG from "../../images/done.svg";
@@ -29,15 +31,19 @@ const ItemCardWrapper = ({ data }) => {
       <div className="icon-wrapper">
         <img src={iconMap[flowGroupStatus]} alt="progress" />
       </div>
-      {data.map((item, index) => (
-        <ItemCard
-          key={`item-card-${item.idFlowItem}`}
-          status={item.itemStatus}
-          title={item.itemTitle}
-          subItems={item.subItems}
-          isLast={index === data.length - 1}
-        />
-      ))}
+      <Grid container spacing={4} justifyContent="center" alignItems="center">
+        {data.map((item, index) => (
+          <Grid item>
+            <ItemCard
+              key={`item-card-${item.idFlowItem}`}
+              status={item.itemStatus}
+              title={item.itemTitle}
+              subItems={item.subItems}
+              isLast={index === data.length - 1}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };

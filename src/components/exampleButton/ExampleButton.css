@@ -12,6 +12,7 @@
     margin-left: 20px;
     margin-right: 20px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .button-root-selected {
@@ -19,10 +20,10 @@
     color: #ffffff;
 }
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
     .button-root{
         margin-left: 0px;
         margin-right:  0px;
         margin-bottom: 10px;
     }
-}
+} */
