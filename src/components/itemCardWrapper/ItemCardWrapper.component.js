@@ -38,7 +38,7 @@ const ItemCardWrapper = ({ data }) => {
         alignItems="flex-start"
       >
         {data.map((item, index) => (
-          <Grid item>
+          <Grid item key={index}>
             <ItemCard
               key={`item-card-${item.idFlowItem}`}
               status={item.itemStatus}
