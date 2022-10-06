@@ -1,0 +1,76 @@
+.dialog-container {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    padding: 5px 10px 20px 20px;
+}
+
+.close-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.feedback-dialog-header {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+.feedback-dialog-header-text {
+    margin-left: 10px;
+    color: #0C1B2A;
+    font-weight: 600;
+    font-size: 16px;
+}
+.feedback-dialog-form-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+}
+.feedback-dialog-form-inputwrapper {
+    margin-bottom: 25px;
+}
+
+.feedback-dialog-form-comentwrapper {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+.add-screenshot-wrapper {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.add-screenshot-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0C1B2A;
+    text-align: center;
+}
+
+.feedback-submit-wrapper {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback-submit-button {
+    background-color: #9FC540;
+    color: #0C1B2A;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.feedback-submit-button:hover {
+    box-shadow: 0px 10px 40px #00000024;
+}

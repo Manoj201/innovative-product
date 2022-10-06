@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import classNames from "classnames";
 
 import Delayed from "./delayed/Delayed.component";
+import FeedbackDialog from "./feedbackDialog/FeedbackDialog.component";
 
 import cryingSVG from "./images/crying.svg";
 import disapointedSVG from "./images/disapointed.svg";
@@ -14,6 +15,17 @@ import "./UXFeeedBackFloater.css";
 
 const UXFeeedBackFloater = () => {
   const [isCollapse, setIsCollapse] = useState(true);
+  const [rating, setRating] = useState(0);
+
+  const iconMap = useMemo(() => {
+    return {
+      1: cryingSVG,
+      2: disapointedSVG,
+      3: worriedSVG,
+      4: whiteSmilingSVG,
+      5: smilingSVG,
+    };
+  }, []);
 
   const handleClickFloatingButton = () => {
     if (isCollapse) {
@@ -22,59 +34,50 @@ const UXFeeedBackFloater = () => {
   };
 
   return (
-    <div className="grow-left">
-      <div
-        className={classNames(
-          "floating-button",
-          isCollapse === false && "floating-button-clicked"
-        )}
-        onClick={handleClickFloatingButton}
-      >
-        {isCollapse ? (
-          <>
-            <div>Feed</div>
-            <div>back</div>
-          </>
-        ) : (
-          <Delayed>
-            <div className="detailed-container">
-              <div>
-                <div className="experience-text">
-                  How is your experience so far
-                </div>
-                <div className="emojiWrapper">
+    <div
+      className={classNames(
+        "floating-button",
+        isCollapse === false && "floating-button-clicked"
+      )}
+      onClick={handleClickFloatingButton}
+    >
+      {isCollapse ? (
+        <>
+          <div>Feed</div>
+          <div>back</div>
+        </>
+      ) : (
+        <Delayed>
+          <div className="detailed-container">
+            <div>
+              <div className="experience-text">
+                How is your experience so far
+              </div>
+              <div className="emojiWrapper">
+                {Object.entries(iconMap).map((key, index) => (
                   <img
-                    src={cryingSVG}
+                    src={iconMap[index + 1]}
                     alt="cryingSVG"
                     className="emoji"
-                    onClick={() => alert("1")}
+                    onClick={() => setRating(index + 1)}
                   />
-
-                  <img
-                    src={disapointedSVG}
-                    alt="disapointedSVG"
-                    className="emoji"
-                    onClick={() => alert("2")}
-                  />
-                  <img src={worriedSVG} alt="worriedSVG" className="emoji" />
-                  <img
-                    src={whiteSmilingSVG}
-                    alt="whiteSmilingSVG"
-                    className="emoji"
-                  />
-                  <img src={smilingSVG} alt="smilingSVG" className="emoji" />
-                </div>
+                ))}
               </div>
-              <img
-                src={arrowSVG}
-                alt="arrow"
-                className="arrow"
-                onClick={() => setIsCollapse(true)}
-              />
             </div>
-          </Delayed>
-        )}
-      </div>
+            <img
+              src={arrowSVG}
+              alt="arrow"
+              className="arrow"
+              onClick={() => setIsCollapse(true)}
+            />
+          </div>
+        </Delayed>
+      )}
+      <FeedbackDialog
+        open={rating > 0}
+        onClickDialogClose={() => setRating(0)}
+        emoji={iconMap[rating]}
+      />
     </div>
   );
 };
