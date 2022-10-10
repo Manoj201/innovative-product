@@ -33,33 +33,38 @@ const UXFeeedBackFloater = () => {
     }
   };
 
+  const handleClickEmoji = (rating) => {
+    setRating(rating);
+    setIsCollapse(true);
+  };
+
   return (
     <div
       className={classNames(
         "floating-button",
         isCollapse === false && "floating-button-clicked"
       )}
-      onClick={handleClickFloatingButton}
+      onClick={rating === 0 ? handleClickFloatingButton : null}
     >
       {isCollapse ? (
         <>
-          <div>Feed</div>
-          <div>back</div>
+          <div>Feed&#10;back</div>
         </>
       ) : (
         <Delayed>
           <div className="detailed-container">
             <div>
               <div className="experience-text">
-                How is your experience so far
+                ? How is your experience so far
               </div>
               <div className="emojiWrapper">
                 {Object.entries(iconMap).map((key, index) => (
                   <img
+                    key={index}
                     src={iconMap[index + 1]}
                     alt="cryingSVG"
                     className="emoji"
-                    onClick={() => setRating(index + 1)}
+                    onClick={() => handleClickEmoji(index + 1)}
                   />
                 ))}
               </div>
@@ -76,7 +81,7 @@ const UXFeeedBackFloater = () => {
       <FeedbackDialog
         open={rating > 0}
         onClickDialogClose={() => setRating(0)}
-        emoji={iconMap[rating]}
+        rating={rating}
       />
     </div>
   );
