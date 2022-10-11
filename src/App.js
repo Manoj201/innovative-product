@@ -8,6 +8,10 @@ import example1Data from "./data/example1.json";
 import example2Data from "./data/example2.json";
 import example3Data from "./data/example3.json";
 
+// import { UXFeedbackFloater } from "ux-feedback-floating-button";
+
+import UXFeeedBackFloater from "./components/uxFeedback/UXFeeedBackFloater.component";
+
 function App() {
   const [data, setData] = useState(example1Data);
 
@@ -31,6 +35,7 @@ function App() {
     <div className="rootContainer">
       <ExampleSelector onChange={handleChangeSelection} />
       <Workflow data={data} />
+      <UXFeeedBackFloater />
     </div>
   );
 }

@@ -2,9 +2,8 @@
     display: flex;
     flex: 1;
     align-items: center;
-    min-height: 100vh;
     background-color: #FFFFFF;
-    overflow: scroll;
     padding-bottom: 10px;
     flex-direction: column;
+    overflow: hidden;
 }

@@ -1,0 +1,61 @@
+.screen-capture-layer {
+    width: 100%;
+    height: 99%;
+    border: 5px solid #9FC540;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.screen-capture-layer-button-pannel {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 402px;
+    height: 42px;
+    border: 5px solid #9FC540;
+    border-radius: 5px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.screen-capture-layer-cancel {
+    display: flex;
+    flex: 1;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.screen-capture-layer-save {
+    display: flex;
+    flex: 1;
+    background-color: #9FC540;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.screen-capture-layer-tool-pannel {
+    background-color: #9FC540;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 0px 0px 5px 0px;
+    padding: 5px 10px 5px 0px;
+}
+.tool-svg {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
