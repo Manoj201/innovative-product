@@ -30,6 +30,7 @@
     align-items: center;
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .screen-capture-layer-save {
@@ -40,4 +41,21 @@
     align-items: center;
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.screen-capture-layer-tool-pannel {
+    background-color: #9FC540;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 0px 0px 5px 0px;
+    padding: 5px 10px 5px 0px;
+}
+.tool-svg {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
 }

@@ -2,13 +2,12 @@ import React, { useRef, useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Backdrop from "@mui/material/Backdrop";
 
 import FieldIndicator from "../fieldIndicator/FieldIndicator.component";
 import FeedbackTextfield from "../feedbackTextfield/FeedbackTextfield.component";
-import ScreenCaptureLayer from "../screenCaptureLayer/ScreenCaptureLayer.component";
 
 import cameraSVG from "../images/camera.svg";
+import cameraActiveSVG from "../images/camera-active.svg";
 import doneSVG from "../images/done.svg";
 
 import "./FeedbackDialog.css";
@@ -20,11 +19,18 @@ const indicatorData = [
   { isRequired: false, topLineHeight: 140 },
 ];
 
-const FeedbackDialog = ({ open, onClickDialogClose, rating }) => {
+const FeedbackDialog = ({
+  open,
+  onClickDialogClose,
+  rating,
+  onClickAddImage,
+  isScreenCaptured,
+  onClickRemoveImage,
+  onClickRetakeScreenshot,
+}) => {
   const [emailError, setEmailError] = useState(true);
   const [submitClicked, setSubmitClicked] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [clickedAddImage, setClickedAddImage] = useState(false);
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -61,13 +67,13 @@ const FeedbackDialog = ({ open, onClickDialogClose, rating }) => {
   };
 
   const handleClickAddImage = () => {
-    setClickedAddImage(true);
+    onClickAddImage(true);
   };
 
   return (
     <>
       <Dialog
-        open={open && !clickedAddImage}
+        open={open}
         PaperProps={{
           style: { borderRadius: 25 },
         }}
@@ -114,19 +120,36 @@ const FeedbackDialog = ({ open, onClickDialogClose, rating }) => {
                     errorText="Required"
                   />
                   <div className="feedback-form-inputs-wrapper">
-                    <div
-                      className="feedback-form-add-photo-wrapper"
-                      onClick={handleClickAddImage}
-                    >
-                      <img
-                        src={cameraSVG}
-                        alt="cameraSVG"
-                        className="feedback-form-camera-iamge"
-                      />
-                      <div className="feedback-form-add-photo-text">
-                        Add a screenshot of your current page and visualize your
-                        improvements
+                    <div className="feedback-form-add-photo-wrapper">
+                      <div className="feedback-form-add-photo-leftbox">
+                        <img
+                          src={isScreenCaptured ? cameraActiveSVG : cameraSVG}
+                          alt="cameraSVG"
+                          className="feedback-form-camera-iamge"
+                          onClick={handleClickAddImage}
+                        />
+                        <div className="feedback-form-add-photo-text">
+                          {isScreenCaptured
+                            ? "Screenshot was added!"
+                            : "Add a screenshot of your current page and visualize your improvements"}
+                        </div>
                       </div>
+                      {isScreenCaptured && (
+                        <div className="feedback-screen-edit-remove-panel">
+                          <div
+                            className="feedback-screen-remove-button"
+                            onClick={onClickRemoveImage}
+                          >
+                            Remove
+                          </div>
+                          <div
+                            className="feedback-screen-edit-button"
+                            onClick={onClickRetakeScreenshot}
+                          >
+                            Retake
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -152,13 +175,6 @@ const FeedbackDialog = ({ open, onClickDialogClose, rating }) => {
           )}
         </div>
       </Dialog>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={clickedAddImage}
-        onClick={handleClose}
-      >
-        <ScreenCaptureLayer />
-      </Backdrop>
     </>
   );
 };

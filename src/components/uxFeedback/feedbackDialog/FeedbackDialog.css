@@ -69,7 +69,13 @@
 .feedback-form-add-photo-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.feedback-form-add-photo-leftbox {
+    display: flex;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -126,5 +132,41 @@
     color: #FFFFFE;
     text-align: center;
     margin-bottom: 130px;
+}
+
+.feedback-screen-remove-button {
+    display: flex;
+    border:  2px solid #FFFFFE;
+    border-radius: 4px;
+    color: #EC4C29;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 8px 5px 8px;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    margin-right: 5px;
+}
+
+.feedback-screen-edit-button {
+    display: flex;
+    border:  2px solid #FFFFFE;
+    border-radius: 4px;
+    color: #FFFFFE;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 8px 5px 8px;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+}
+
+.feedback-screen-edit-remove-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 150px;
 }
 
