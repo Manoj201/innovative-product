@@ -1,6 +1,5 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-
 import "./FeedbackTextfield.css";
 
 const FeedbackTextfield = ({
@@ -27,7 +26,7 @@ const FeedbackTextfield = ({
         id={`feedback-form-name-input-${label}`}
         variant={isComment ? "outlined" : "standard"}
         size="small"
-        style={{ width: "410px" }}
+        style={{ width: "100%" }}
         inputRef={inputRef}
         inputProps={{
           style: { color: "white" },
