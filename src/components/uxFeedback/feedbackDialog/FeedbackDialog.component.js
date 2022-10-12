@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 import FieldIndicator from "../fieldIndicator/FieldIndicator.component";
 import FeedbackTextfield from "../feedbackTextfield/FeedbackTextfield.component";
@@ -31,6 +33,9 @@ const FeedbackDialog = ({
   const [emailError, setEmailError] = useState(true);
   const [submitClicked, setSubmitClicked] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -75,8 +80,9 @@ const FeedbackDialog = ({
       <Dialog
         open={open}
         PaperProps={{
-          style: { borderRadius: 25 },
+          style: { borderRadius: fullScreen ? 0 : 25 },
         }}
+        fullScreen={fullScreen}
       >
         <div className="feedback-form-dialog-container">
           <div className="feedback-form-header-wrapper">
