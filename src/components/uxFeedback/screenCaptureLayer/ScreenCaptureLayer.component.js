@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import * as htmlToImage from "html-to-image";
+
+import Canvas from "../drawing/Canvas";
 
 import PenSVG from "../images/pen.svg";
 import eraserSVG from "../images/eraser.svg";
@@ -9,6 +11,12 @@ import commentSVG from "../images/comment.svg";
 import "./ScreenCaptureLayer.css";
 
 const ScreenCaptureLayer = ({ onClickCancel, onClickSave }) => {
+  const [activeTool, setActiveTool] = useState(null);
+
+  const handleClickTool = (tool) => {
+    setActiveTool(tool);
+  };
+
   const handleCaptureScree = () => {
     let node = document.getElementById("root");
     htmlToImage
@@ -22,22 +30,43 @@ const ScreenCaptureLayer = ({ onClickCancel, onClickSave }) => {
   };
 
   return (
-    <div className="screen-capture-layer">
-      <div className="screen-capture-layer-tool-pannel">
-        <img src={PenSVG} alt="pen" className="tool-svg" />
-        <img src={eraserSVG} alt="pen" className="tool-svg" />
-        <img src={rectangleSVG} alt="pen" className="tool-svg" />
-        <img src={commentSVG} alt="pen" className="tool-svg" />
-      </div>
-      <div className="screen-capture-layer-button-pannel">
-        <div className="screen-capture-layer-cancel" onClick={onClickCancel}>
-          Cancel
+    <>
+      <Canvas activeTool={activeTool} />
+      <div className="screen-capture-layer">
+        <div className="screen-capture-layer-tool-pannel">
+          <img
+            src={PenSVG}
+            alt="pen"
+            className="tool-svg"
+            onClick={() => handleClickTool("pen")}
+          />
+          <img
+            src={eraserSVG}
+            alt="pen"
+            className="tool-svg"
+            onClick={() => handleClickTool("eraser")}
+          />
+          <img
+            src={rectangleSVG}
+            alt="pen"
+            className="tool-svg"
+            onClick={() => handleClickTool("rect")}
+          />
+          <img src={commentSVG} alt="pen" className="tool-svg" />
         </div>
-        <div className="screen-capture-layer-save" onClick={handleCaptureScree}>
-          Save
+        <div className="screen-capture-layer-button-pannel">
+          <div className="screen-capture-layer-cancel" onClick={onClickCancel}>
+            Cancel
+          </div>
+          <div
+            className="screen-capture-layer-save"
+            onClick={handleCaptureScree}
+          >
+            Save
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
