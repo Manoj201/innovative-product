@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/innovative-product/static/css/main.8213d4a5.css",
-    "main.js": "/innovative-product/static/js/main.f3928f6d.js",
+    "main.css": "/innovative-product/static/css/main.796f2384.css",
+    "main.js": "/innovative-product/static/js/main.4009655c.js",
     "static/js/787.43356e93.chunk.js": "/innovative-product/static/js/787.43356e93.chunk.js",
     "static/media/montserrat-all-400-normal.woff": "/innovative-product/static/media/montserrat-all-400-normal.327fab0afc997a2d9b16.woff",
     "static/media/montserrat-latin-400-normal.woff2": "/innovative-product/static/media/montserrat-latin-400-normal.acb6629fe45c43ad5d8b.woff2",
@@ -25,12 +25,12 @@
     "static/media/arrow.svg": "/innovative-product/static/media/arrow.7e336ac599fade31fe23e6243b011fcf.svg",
     "static/media/rectangle.svg": "/innovative-product/static/media/rectangle.466005da2513dde5572ff46cf5c0e7c3.svg",
     "static/media/notStart.svg": "/innovative-product/static/media/notStart.c595ac11faf74f645d932dffb4216613.svg",
-    "main.8213d4a5.css.map": "/innovative-product/static/css/main.8213d4a5.css.map",
-    "main.f3928f6d.js.map": "/innovative-product/static/js/main.f3928f6d.js.map",
+    "main.796f2384.css.map": "/innovative-product/static/css/main.796f2384.css.map",
+    "main.4009655c.js.map": "/innovative-product/static/js/main.4009655c.js.map",
     "787.43356e93.chunk.js.map": "/innovative-product/static/js/787.43356e93.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8213d4a5.css",
-    "static/js/main.f3928f6d.js"
+    "static/css/main.796f2384.css",
+    "static/js/main.4009655c.js"
   ]
 }
