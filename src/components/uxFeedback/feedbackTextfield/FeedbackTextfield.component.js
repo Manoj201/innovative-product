@@ -9,6 +9,7 @@ const FeedbackTextfield = ({
   onChange,
   isError,
   errorText,
+  value,
 }) => {
   return (
     <div className="feedback-form-inputs-wrapper">
@@ -23,6 +24,7 @@ const FeedbackTextfield = ({
         {isError && <div className="error-text">( {errorText} )</div>}
       </div>
       <TextField
+        defaultValue={value}
         id={`feedback-form-name-input-${label}`}
         variant={isComment ? "outlined" : "standard"}
         size="small"

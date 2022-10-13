@@ -29,6 +29,8 @@ const FeedbackDialog = ({
   isScreenCaptured,
   onClickRemoveImage,
   onClickRetakeScreenshot,
+  initialFormData,
+  onClickSubmit,
 }) => {
   const [emailError, setEmailError] = useState(true);
   const [submitClicked, setSubmitClicked] = useState(false);
@@ -55,11 +57,12 @@ const FeedbackDialog = ({
   const handleSave = () => {
     setSubmitClicked(true);
     if (!emailError && commentRef.current.value) {
-      console.log(nameRef.current.value);
-      console.log(emailRef.current.value);
-      console.log(commentRef.current.value);
-      console.log(rating);
       setFormSubmitted(true);
+      onClickSubmit({
+        name: nameRef.current.value,
+        email: emailRef.current.value,
+        comments: commentRef.current.value,
+      });
     }
   };
 
@@ -72,7 +75,12 @@ const FeedbackDialog = ({
   };
 
   const handleClickAddImage = () => {
-    onClickAddImage(true);
+    const formData = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      comments: commentRef.current.value,
+    };
+    onClickAddImage(true, formData);
   };
 
   return (
@@ -110,13 +118,18 @@ const FeedbackDialog = ({
               <div className="feedback-form-inputs-container">
                 <FieldIndicator data={indicatorData} />
                 <div className="feedback-form-inputs-right-container">
-                  <FeedbackTextfield inputRef={nameRef} label="Name" />
+                  <FeedbackTextfield
+                    inputRef={nameRef}
+                    label="Name"
+                    value={initialFormData.name}
+                  />
                   <FeedbackTextfield
                     inputRef={emailRef}
                     label="Email"
                     onChange={onChangeEmail}
                     isError={submitClicked && emailError}
                     errorText={"Enter valid email id"}
+                    value={initialFormData.email}
                   />
                   <FeedbackTextfield
                     inputRef={commentRef}
@@ -124,6 +137,7 @@ const FeedbackDialog = ({
                     isComment
                     isError={submitClicked && !commentRef.current.value}
                     errorText="Required"
+                    value={initialFormData.comments}
                   />
                   <div className="feedback-form-inputs-wrapper">
                     <div className="feedback-form-add-photo-wrapper">
