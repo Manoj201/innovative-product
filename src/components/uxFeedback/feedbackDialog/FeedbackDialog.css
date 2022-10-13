@@ -55,9 +55,10 @@
 
 .feedback-form-inputs-container {
     margin-top: 58px;
-    padding-right: 40px;
+    padding-right: 30px;
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .feedback-form-inputs-right-container {
@@ -178,6 +179,10 @@
 
     .feedback-form-header-wrapper {
         margin-right: 0px;
+    }
+
+    .feedback-form-inputs-container {
+        width: 90%;
     }
     
 }

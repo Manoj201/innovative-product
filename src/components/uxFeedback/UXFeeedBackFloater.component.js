@@ -15,11 +15,19 @@ import arrowSVG from "./images/arrow.svg";
 
 import "./UXFeeedBackFloater.css";
 
+const initialFormData = {
+  name: "",
+  email: "",
+  comments: "",
+};
+
 const UXFeeedBackFloater = () => {
   const [isCollapse, setIsCollapse] = useState(true);
   const [rating, setRating] = useState(0);
   const [clickedAddImage, setClickedAddImage] = useState(false);
   const [imageData, setImageData] = useState(null);
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const iconMap = useMemo(() => {
     return {
@@ -42,9 +50,25 @@ const UXFeeedBackFloater = () => {
     setIsCollapse(true);
   };
 
+  const handleClickAddImage = (value, formData) => {
+    setClickedAddImage(value);
+    setFormData(formData);
+  };
+
   const handleClickScreenCapture = (imageData) => {
     setImageData(imageData);
     setClickedAddImage(false);
+  };
+
+  const handleSubmit = (formData) => {
+    console.log(formData, rating, imageData);
+    setFormData(initialFormData);
+  };
+
+  const handleDialogClose = () => {
+    setRating(0);
+    setImageData(null);
+    setFormData(initialFormData);
   };
 
   return (
@@ -91,15 +115,14 @@ const UXFeeedBackFloater = () => {
       </div>
       <FeedbackDialog
         open={rating > 0 && !clickedAddImage}
-        onClickDialogClose={() => {
-          setRating(0);
-          setImageData(null);
-        }}
+        onClickDialogClose={handleDialogClose}
         rating={rating}
-        onClickAddImage={(value) => setClickedAddImage(value)}
+        onClickAddImage={handleClickAddImage}
         isScreenCaptured={imageData ? true : false}
         onClickRemoveImage={() => setImageData(null)}
         onClickRetakeScreenshot={() => setClickedAddImage(true)}
+        initialFormData={formData}
+        onClickSubmit={handleSubmit}
       />
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
