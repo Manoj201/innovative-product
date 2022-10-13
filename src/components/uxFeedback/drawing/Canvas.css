@@ -1,0 +1,9 @@
+.canvas {
+    width: 100%;
+    max-height: calc(100% - 106px);
+    background-color: transparent;
+    position: absolute;
+    top: 48px;
+    left: 0px;
+    z-index: 2;
+}
