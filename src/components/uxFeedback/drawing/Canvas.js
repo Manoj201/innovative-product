@@ -32,13 +32,12 @@ const Canvas = ({ activeTool }) => {
   }, []);
 
   useEffect(() => {
-    if (activeTool === "pen") {
-      contextRef.current.globalCompositeOperation = "source-over";
-      contextRef.current.lineWidth = 2;
-    }
     if (activeTool === "eraser") {
       contextRef.current.globalCompositeOperation = "destination-out";
       contextRef.current.lineWidth = 50;
+    } else {
+      contextRef.current.globalCompositeOperation = "source-over";
+      contextRef.current.lineWidth = 2;
     }
   }, [activeTool]);
 
@@ -110,6 +109,7 @@ const Canvas = ({ activeTool }) => {
     setIsDrawing(false);
   };
 
+  console.log(activeTool);
   return (
     <canvas
       className="canvas"

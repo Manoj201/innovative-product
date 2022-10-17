@@ -125,7 +125,11 @@ const UXFeeedBackFloater = () => {
         onClickSubmit={handleSubmit}
       />
       <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          backgroundColor: "rgba(0, 0, 0, 0)",
+        }}
         open={clickedAddImage}
       >
         <ScreenCaptureLayer

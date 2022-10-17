@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as htmlToImage from "html-to-image";
+import classNames from "classnames";
 
 import Canvas from "../drawing/Canvas";
 
@@ -34,27 +35,56 @@ const ScreenCaptureLayer = ({ onClickCancel, onClickSave }) => {
       <Canvas activeTool={activeTool} />
       <div className="screen-capture-layer">
         <div className="screen-capture-layer-tool-pannel">
-          <img
-            src={PenSVG}
-            alt="pen"
-            className="tool-svg"
-            onClick={() => handleClickTool("pen")}
-          />
-          <img
-            src={eraserSVG}
-            alt="pen"
-            className="tool-svg"
-            onClick={() => handleClickTool("eraser")}
-          />
-          <img
-            src={rectangleSVG}
-            alt="pen"
-            className="tool-svg"
-            onClick={() => handleClickTool("rect")}
-          />
-          <img src={commentSVG} alt="pen" className="tool-svg" />
+          <div
+            className={classNames(
+              "tool-button-wrapper",
+              activeTool === "pen" && "tool-button-wrapper-active"
+            )}
+          >
+            <img
+              src={PenSVG}
+              alt="pen"
+              className="tool-svg"
+              onClick={() => handleClickTool("pen")}
+            />
+          </div>
+          <div
+            className={classNames(
+              "tool-button-wrapper",
+              activeTool === "eraser" && "tool-button-wrapper-active"
+            )}
+          >
+            <img
+              src={eraserSVG}
+              alt="pen"
+              className="tool-svg"
+              onClick={() => handleClickTool("eraser")}
+            />
+          </div>
+
+          <div
+            className={classNames(
+              "tool-button-wrapper",
+              activeTool === "rect" && "tool-button-wrapper-active"
+            )}
+          >
+            <img
+              src={rectangleSVG}
+              alt="pen"
+              className="tool-svg"
+              onClick={() => handleClickTool("rect")}
+            />
+          </div>
+          <div
+            className={classNames(
+              "tool-button-wrapper",
+              activeTool === "comment" && "tool-button-wrapper-active"
+            )}
+          >
+            <img src={commentSVG} alt="pen" className="tool-svg" />
+          </div>
         </div>
-        <div className="screen-capture-layer-button-pannel">
+        {/* <div className="screen-capture-layer-button-pannel">
           <div className="screen-capture-layer-cancel" onClick={onClickCancel}>
             Cancel
           </div>
@@ -64,7 +94,7 @@ const ScreenCaptureLayer = ({ onClickCancel, onClickSave }) => {
           >
             Save
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

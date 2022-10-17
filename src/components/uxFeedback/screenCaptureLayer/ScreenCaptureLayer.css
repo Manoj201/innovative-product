@@ -51,6 +51,9 @@
     left: 0px;
     border-radius: 0px 0px 5px 0px;
     padding: 5px 10px 5px 0px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .tool-svg {
     width: 30px;
@@ -58,4 +61,15 @@
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.tool-button-wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: background-color 0.4s;
+}
+
+.tool-button-wrapper-active {
+    background-color: white;
+    border-radius: 10px;
 }
