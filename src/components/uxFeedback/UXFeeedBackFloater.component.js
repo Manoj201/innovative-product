@@ -4,7 +4,7 @@ import Backdrop from "@mui/material/Backdrop";
 
 import Delayed from "./delayed/Delayed.component";
 import FeedbackDialog from "./feedbackDialog/FeedbackDialog.component";
-import ScreenCaptureLayer from "./screenCaptureLayer/ScreenCaptureLayer.component";
+import Canvas from "./drawing/Canvas";
 
 import cryingSVG from "./images/crying.svg";
 import disapointedSVG from "./images/disapointed.svg";
@@ -132,10 +132,12 @@ const UXFeeedBackFloater = () => {
         }}
         open={clickedAddImage}
       >
-        <ScreenCaptureLayer
-          onClickCancel={() => setClickedAddImage(false)}
-          onClickSave={handleClickScreenCapture}
-        />
+        {clickedAddImage && (
+          <Canvas
+            onClickCancel={() => setClickedAddImage(false)}
+            onClickSave={handleClickScreenCapture}
+          />
+        )}
       </Backdrop>
     </>
   );

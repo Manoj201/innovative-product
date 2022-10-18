@@ -1,215 +1,46 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import rough from "roughjs/bundled/rough.esm";
-import getStroke from "perfect-freehand";
+import * as htmlToImage from "html-to-image";
 
 import "./Canvas.css";
 
-import PanToolIcon from "@mui/icons-material/PanTool";
-import CreateIcon from "@mui/icons-material/Create";
-import CropSquareIcon from "@mui/icons-material/CropSquare";
-import CommentIcon from "@mui/icons-material/Comment";
-import RedoIcon from "@mui/icons-material/Redo";
-import UndoIcon from "@mui/icons-material/Undo";
+import {
+  Create as CreateIcon,
+  CropSquare as CropSquareIcon,
+  Comment as CommentIcon,
+  Redo as RedoIcon,
+  Undo as UndoIcon,
+  Save as SaveIcon,
+  Close as CloseIcon,
+  PanTool as PanToolIcon,
+} from "@mui/icons-material";
+
+import ToolButton from "../toolButton/ToolButton";
+import {
+  createElement,
+  getElementAtPosition,
+  adjustElementCoordinates,
+  cursorForPosition,
+  resizedCoordinates,
+  useHistory,
+  drawElement,
+  adjustmentRequired,
+} from "./DrawingHelper";
 
 const generator = rough.generator();
 
-const createElement = (id, x1, y1, x2, y2, type, options) => {
-  switch (type) {
-    case "line":
-    case "rectangle":
-      const roughElement =
-        type === "line"
-          ? generator.line(x1, y1, x2, y2, { stroke: options.color })
-          : generator.rectangle(x1, y1, x2 - x1, y2 - y1, {
-              stroke: options.color,
-            });
-      return { id, x1, y1, x2, y2, type, options, roughElement };
-    case "pencil":
-      return { id, type, points: [{ x: x1, y: y1 }], options };
-    case "text":
-      return { id, type, x1, y1, x2, y2, text: "" };
-    default:
-      throw new Error(`Type not recognised: ${type}`);
-  }
-};
-
-const nearPoint = (x, y, x1, y1, name) => {
-  return Math.abs(x - x1) < 5 && Math.abs(y - y1) < 5 ? name : null;
-};
-
-const onLine = (x1, y1, x2, y2, x, y, maxDistance = 1) => {
-  const a = { x: x1, y: y1 };
-  const b = { x: x2, y: y2 };
-  const c = { x, y };
-  const offset = distance(a, b) - (distance(a, c) + distance(b, c));
-  return Math.abs(offset) < maxDistance ? "inside" : null;
-};
-
-const positionWithinElement = (x, y, element) => {
-  const { type, x1, x2, y1, y2 } = element;
-  switch (type) {
-    case "line":
-      const on = onLine(x1, y1, x2, y2, x, y);
-      const start = nearPoint(x, y, x1, y1, "start");
-      const end = nearPoint(x, y, x2, y2, "end");
-      return start || end || on;
-    case "rectangle":
-      const topLeft = nearPoint(x, y, x1, y1, "tl");
-      const topRight = nearPoint(x, y, x2, y1, "tr");
-      const bottomLeft = nearPoint(x, y, x1, y2, "bl");
-      const bottomRight = nearPoint(x, y, x2, y2, "br");
-      const inside = x >= x1 && x <= x2 && y >= y1 && y <= y2 ? "inside" : null;
-      return topLeft || topRight || bottomLeft || bottomRight || inside;
-    case "pencil":
-      const betweenAnyPoint = element.points.some((point, index) => {
-        const nextPoint = element.points[index + 1];
-        if (!nextPoint) return false;
-        return (
-          onLine(point.x, point.y, nextPoint.x, nextPoint.y, x, y, 5) != null
-        );
-      });
-      return betweenAnyPoint ? "inside" : null;
-    case "text":
-      return x >= x1 && x <= x2 && y >= y1 && y <= y2 ? "inside" : null;
-    default:
-      throw new Error(`Type not recognised: ${type}`);
-  }
-};
-
-const distance = (a, b) =>
-  Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
-
-const getElementAtPosition = (x, y, elements) => {
-  return elements
-    .map((element) => ({
-      ...element,
-      position: positionWithinElement(x, y, element),
-    }))
-    .find((element) => element.position !== null);
-};
-
-const adjustElementCoordinates = (element) => {
-  const { type, x1, y1, x2, y2 } = element;
-  if (type === "rectangle") {
-    const minX = Math.min(x1, x2);
-    const maxX = Math.max(x1, x2);
-    const minY = Math.min(y1, y2);
-    const maxY = Math.max(y1, y2);
-    return { x1: minX, y1: minY, x2: maxX, y2: maxY };
-  } else {
-    if (x1 < x2 || (x1 === x2 && y1 < y2)) {
-      return { x1, y1, x2, y2 };
-    } else {
-      return { x1: x2, y1: y2, x2: x1, y2: y1 };
-    }
-  }
-};
-
-const cursorForPosition = (position) => {
-  switch (position) {
-    case "tl":
-    case "br":
-    case "start":
-    case "end":
-      return "nwse-resize";
-    case "tr":
-    case "bl":
-      return "nesw-resize";
-    default:
-      return "move";
-  }
-};
-
-const resizedCoordinates = (clientX, clientY, position, coordinates) => {
-  const { x1, y1, x2, y2 } = coordinates;
-  switch (position) {
-    case "tl":
-    case "start":
-      return { x1: clientX, y1: clientY, x2, y2 };
-    case "tr":
-      return { x1, y1: clientY, x2: clientX, y2 };
-    case "bl":
-      return { x1: clientX, y1, x2, y2: clientY };
-    case "br":
-    case "end":
-      return { x1, y1, x2: clientX, y2: clientY };
-    default:
-      return null; //should not really get here...
-  }
-};
-
-const useHistory = (initialState) => {
-  const [index, setIndex] = useState(0);
-  const [history, setHistory] = useState([initialState]);
-
-  const setState = (action, overwrite = false) => {
-    const newState =
-      typeof action === "function" ? action(history[index]) : action;
-    if (overwrite) {
-      const historyCopy = [...history];
-      historyCopy[index] = newState;
-      setHistory(historyCopy);
-    } else {
-      const updatedState = [...history].slice(0, index + 1);
-      setHistory([...updatedState, newState]);
-      setIndex((prevState) => prevState + 1);
-    }
-  };
-
-  const undo = () => index > 0 && setIndex((prevState) => prevState - 1);
-  const redo = () =>
-    index < history.length - 1 && setIndex((prevState) => prevState + 1);
-
-  return [history[index], setState, undo, redo];
-};
-
-const getSvgPathFromStroke = (stroke) => {
-  if (!stroke.length) return "";
-
-  const d = stroke.reduce(
-    (acc, [x0, y0], i, arr) => {
-      const [x1, y1] = arr[(i + 1) % arr.length];
-      acc.push(x0, y0, (x0 + x1) / 2, (y0 + y1) / 2);
-      return acc;
-    },
-    ["M", ...stroke[0], "Q"]
-  );
-
-  d.push("Z");
-  return d.join(" ");
-};
-
-const drawElement = (roughCanvas, context, element) => {
-  switch (element.type) {
-    case "line":
-    case "rectangle":
-      context.strokeStyle = "red";
-      roughCanvas.draw(element.roughElement);
-      break;
-    case "pencil":
-      context.fillStyle = element.options.color;
-      const stroke = getSvgPathFromStroke(getStroke(element.points));
-      context.fill(new Path2D(stroke));
-      break;
-    case "text":
-      context.textBaseline = "top";
-      context.font = "24px sans-serif";
-      context.fillText(element.text, element.x1, element.y1);
-      break;
-    default:
-      throw new Error(`Type not recognised: ${element.type}`);
-  }
-};
-
-const adjustmentRequired = (type) => ["line", "rectangle"].includes(type);
-
-const Canvas = () => {
-  const [elements, setElements, undo, redo] = useHistory([]);
+const Canvas = ({ onClickSave, onClickCancel, isActive }) => {
+  const [elements, setElements, undo, redo, reset] = useHistory([]);
   const [action, setAction] = useState("none");
   const [selectedElement, setSelectedElement] = useState(null);
   const [tool, setTool] = useState("pencil");
   const color = "red";
   const textAreaRef = useRef();
+
+  useEffect(() => {
+    reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useLayoutEffect(() => {
     const canvas = document.getElementById("canvas");
@@ -255,7 +86,16 @@ const Canvas = () => {
     switch (type) {
       case "line":
       case "rectangle":
-        elementsCopy[id] = createElement(id, x1, y1, x2, y2, type, options);
+        elementsCopy[id] = createElement(
+          id,
+          x1,
+          y1,
+          x2,
+          y2,
+          type,
+          options,
+          generator
+        );
         break;
       case "pencil":
         elementsCopy[id].points = [
@@ -277,7 +117,8 @@ const Canvas = () => {
             x1 + textWidth,
             y1 + textHeight,
             type,
-            options
+            options,
+            generator
           ),
           text: options.text,
         };
@@ -322,7 +163,8 @@ const Canvas = () => {
         clientX,
         clientY,
         tool,
-        { color }
+        { color },
+        generator
       );
       setElements((prevState) => [...prevState, element]);
       setSelectedElement(element);
@@ -427,81 +269,63 @@ const Canvas = () => {
     updateElement(id, x1, y1, null, null, type, { text: event.target.value });
   };
 
-  return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <div
-        style={{
-          backgroundColor: "#9FC540",
-          padding: 10,
-          paddingTop: 20,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-start",
-        }}
-      >
-        <div style={{ marginBottom: 20, display: "flex" }}>
-          <CreateIcon
-            style={{ width: 28, height: 28, cursor: "pointer" }}
-            sx={{ color: tool === "pencil" ? "white" : "black" }}
-            onClick={() => setTool("pencil")}
-          />
-        </div>
-        <div style={{ marginBottom: 20, display: "flex" }}>
-          <CropSquareIcon
-            style={{ width: 28, height: 28, cursor: "pointer" }}
-            sx={{ color: tool === "rectangle" ? "white" : "black" }}
-            onClick={() => setTool("rectangle")}
-          />
-        </div>
+  const handleCaptureScree = () => {
+    let node = document.getElementById("root");
+    htmlToImage
+      .toPng(node)
+      .then(function (dataUrl) {
+        onClickSave(dataUrl);
+      })
+      .catch(function (error) {
+        console.error("oops, something went wrong!", error);
+      });
+  };
 
-        <div style={{ marginBottom: 20, display: "flex" }}>
-          <CommentIcon
-            style={{ width: 28, height: 28, cursor: "pointer" }}
-            sx={{ color: tool === "text" ? "white" : "black" }}
-            onClick={() => setTool("text")}
-          />
-        </div>
-        <div style={{ marginBottom: 20, display: "flex" }}>
-          <PanToolIcon
-            style={{ width: 28, height: 28, cursor: "pointer" }}
-            sx={{ color: tool === "selection" ? "white" : "black" }}
-            onClick={() => setTool("selection")}
-          />
-        </div>
-        <div style={{ marginBottom: 20, display: "flex" }}>
-          <UndoIcon
-            style={{ width: 28, height: 28, cursor: "pointer" }}
-            sx={{ color: "black" }}
-            onClick={undo}
-          />
-        </div>
-        <div style={{ marginBottom: 20, display: "flex" }}>
-          <RedoIcon
-            style={{ width: 28, height: 28, cursor: "pointer" }}
-            sx={{ color: "black" }}
-            onClick={redo}
-          />
-        </div>
+  return (
+    <div className="canvas-container">
+      <div className="canvas-tool-panel">
+        <ToolButton
+          onclickTool={() => setTool("pencil")}
+          icon={CreateIcon}
+          isActive={tool === "pencil"}
+        />
+        <ToolButton
+          onclickTool={() => setTool("rectangle")}
+          icon={CropSquareIcon}
+          isActive={tool === "rectangle"}
+        />
+        <ToolButton
+          onclickTool={() => setTool("text")}
+          icon={CommentIcon}
+          isActive={tool === "text"}
+        />
+        <ToolButton
+          onclickTool={() => setTool("selection")}
+          icon={PanToolIcon}
+          isActive={tool === "selection"}
+        />
+        <ToolButton onclickTool={undo} icon={UndoIcon} />
+        <ToolButton onclickTool={redo} icon={RedoIcon} />
+        <ToolButton onclickTool={handleCaptureScree} icon={SaveIcon} />
+        <ToolButton
+          onclickTool={() => {
+            onClickCancel();
+            reset();
+          }}
+          icon={CloseIcon}
+        />
       </div>
 
       {action === "writing" ? (
         <textarea
           ref={textAreaRef}
           onBlur={handleBlur}
+          autofocus={true}
+          placeholder="Enter your feedback"
+          className="canvas-comment-area"
           style={{
-            position: "fixed",
             top: selectedElement.y1 - 2,
             left: selectedElement.x1,
-            font: "24px sans-serif",
-            margin: 0,
-            padding: 0,
-            border: 0,
-            outline: 0,
-            resize: "auto",
-            overflow: "hidden",
-            whiteSpace: "pre",
-            background: "#9FC540",
           }}
         />
       ) : null}
