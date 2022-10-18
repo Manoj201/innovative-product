@@ -1,18 +1,15 @@
 {
   "files": {
-    "main.css": "/innovative-product/static/css/main.19aa5701.css",
-    "main.js": "/innovative-product/static/js/main.11c04013.js",
+    "main.css": "/innovative-product/static/css/main.eed7c979.css",
+    "main.js": "/innovative-product/static/js/main.61c2bc3a.js",
     "static/js/787.43356e93.chunk.js": "/innovative-product/static/js/787.43356e93.chunk.js",
     "static/media/montserrat-all-400-normal.woff": "/innovative-product/static/media/montserrat-all-400-normal.327fab0afc997a2d9b16.woff",
     "static/media/montserrat-latin-400-normal.woff2": "/innovative-product/static/media/montserrat-latin-400-normal.acb6629fe45c43ad5d8b.woff2",
     "static/media/montserrat-latin-ext-400-normal.woff2": "/innovative-product/static/media/montserrat-latin-ext-400-normal.0204ec08a4b574088f02.woff2",
     "static/media/montserrat-cyrillic-ext-400-normal.woff2": "/innovative-product/static/media/montserrat-cyrillic-ext-400-normal.bbf9e820a2563aac0d8b.woff2",
     "static/media/montserrat-cyrillic-400-normal.woff2": "/innovative-product/static/media/montserrat-cyrillic-400-normal.e5c5c19c23e370a342c8.woff2",
-    "static/media/pen.svg": "/innovative-product/static/media/pen.5fe7a7ede1ca7f6e9842ef1da19ed895.svg",
     "static/media/montserrat-vietnamese-400-normal.woff2": "/innovative-product/static/media/montserrat-vietnamese-400-normal.8f3f4c99eb0eeb5990f1.woff2",
-    "static/media/eraser.svg": "/innovative-product/static/media/eraser.73c44e49cdc5632e1dbc8b13fa80e938.svg",
     "static/media/crying.svg": "/innovative-product/static/media/crying.9d3fa1ce0eaf3ef1fee30545d5f7b2a4.svg",
-    "static/media/comment.svg": "/innovative-product/static/media/comment.41bede15a79cdeab8f8dbaa595305fde.svg",
     "static/media/smiling.svg": "/innovative-product/static/media/smiling.091541fada6fb3317a268cba213faf9c.svg",
     "static/media/worried.svg": "/innovative-product/static/media/worried.84955e7b31c8661beae338f22a2957c8.svg",
     "static/media/inprogress.svg": "/innovative-product/static/media/inprogress.9acb3f95f6988e1df964dc8597a8c896.svg",
@@ -23,14 +20,13 @@
     "index.html": "/innovative-product/index.html",
     "static/media/done.svg": "/innovative-product/static/media/done.ad8d66ba2cc8103e774ee8b1f478ccc9.svg",
     "static/media/arrow.svg": "/innovative-product/static/media/arrow.7e336ac599fade31fe23e6243b011fcf.svg",
-    "static/media/rectangle.svg": "/innovative-product/static/media/rectangle.466005da2513dde5572ff46cf5c0e7c3.svg",
     "static/media/notStart.svg": "/innovative-product/static/media/notStart.c595ac11faf74f645d932dffb4216613.svg",
-    "main.19aa5701.css.map": "/innovative-product/static/css/main.19aa5701.css.map",
-    "main.11c04013.js.map": "/innovative-product/static/js/main.11c04013.js.map",
+    "main.eed7c979.css.map": "/innovative-product/static/css/main.eed7c979.css.map",
+    "main.61c2bc3a.js.map": "/innovative-product/static/js/main.61c2bc3a.js.map",
     "787.43356e93.chunk.js.map": "/innovative-product/static/js/787.43356e93.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.19aa5701.css",
-    "static/js/main.11c04013.js"
+    "static/css/main.eed7c979.css",
+    "static/js/main.61c2bc3a.js"
   ]
 }
